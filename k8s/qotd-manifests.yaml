@@ -35,7 +35,7 @@ spec:
         deploymentconfig: qotd
     spec:
       containers:
-      - image: qotd:latest
+      - image: image-registry.openshift-image-registry.svc:5000/pipelines-tutorial/qotd:latest
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
