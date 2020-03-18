@@ -20,6 +20,5 @@ spec:
     targetPort: 8778
   selector:
     app: qotd
-    deploymentconfig: qotd
   sessionAffinity: None
   type: NodePort
