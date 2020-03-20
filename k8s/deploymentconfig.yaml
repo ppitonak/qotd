@@ -3,6 +3,8 @@ kind: DeploymentConfig
 metadata:
   name: qotd
   namespace: pipelines-tutorial
+  labels:
+    app: qotd
 spec:
   selector:
     app: qotd
@@ -15,5 +17,17 @@ spec:
       containers:
         - name: qotd
           image: image-registry.openshift-image-registry.svc:5000/pipelines-tutorial/qotd:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 10000
+              protocol: TCP
+  triggers:
+  - type: ConfigChange 
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - qotd
+      from:
+        kind: ImageStreamTag
+        name: qotd:latest
+    type: ImageChange
